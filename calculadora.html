@@ -71,7 +71,6 @@
         // essa variavel recebera o valor decimal do metodo "parseInt(X,Y)" sendo que, X é o valor a ser convertido e Y a base desse numero. obs: Caso X seja um numero invalido para a base indicada, "decimalNum" recebe "NaN", mas apenas se o numero mais a esquerda da input ser o numero invalido.
         let decimalNum = parseInt(valorInp, base)
 
-        console.log(decimalNum)
         // SE "decimalNum" tenha recebido "NaN" o codigo dispara um alert e nenhuma conta é feita, SE NÃO, as conversões são feitas normalmente.
         if (isNaN(decimalNum)) {
             alert("Coloque um valor válido para a base indicada")
