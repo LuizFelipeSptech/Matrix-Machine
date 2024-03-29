@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <div class="mainFrame">
+        <div class="container-card">
+
+            <p class="text-conversor">Conversor</p>
+            <p class="text-input">Selecione a base a ser convertida:</p>
+            <select id="selectBase">
+                <option value="2">Binario</option>
+                <option value="8">Octal</option>
+                <option value="10">Decimal</option>
+                <option value="16">Hexadecimal</option>
+            </select>
+
+            <p class="text-input">Digite o valor a ser convertido:</p>
+            <input type="text" id="inp_numero">
+
+            <p class="text-input">Selecione a base que quer converter:</p>
+
+            <div class="checkboxInput">
+                <input onclick="inp_octal()" type="checkbox" id="octal"> Octal <br>
+                <div id="div_octal" class="answer-box"></div>
+
+                <input onclick="inp_hexadecimal()" type="checkbox" id="hexadecimal"> Hexadecimal <br>
+                <div id="div_hexadecimal" class="answer-box"></div>
+
+                <input onclick="inp_binario()" type="checkbox" id="binario"> Binário <br>
+                <div id="div_binario" class="answer-box"></div>
+
+                <input onclick="inp_decimal()" type="checkbox" id="decimal"> Decimal <br>
+                <div id="div_decimal" class="answer-box"></div>
+            </div>
+
+            <button class="button_converter" onclick="converter()">Converter</button>
+
+
+        </div>
+    </div>
+
+    <video autoplay muted loop id="codevideo">
+        <source src="y2meta.net_1080p-matrix-screensaver-rain-code-binary-english-vj-loop-matrix-animation-background.mp4" type="video/mp4">
+      </video>
+</body>
+
+</html>
+
+<script>
+    let visibilitVarOctal = 0
+    let visibilitVarHexadecimal = 0
+    let visibilitVarBinario = 0
+    let visibilitVarDecimal = 0
+
+    function converter() {
+        // Essa variavel recebe os valores [2,6,8,10 ou 16] das "options" para definir a base que vai ser utilizadas
+        let base = Number(selectBase.value)
+
+        // Aqui se recebe o valor que o usuario digitou para ser convertido, a diferença é que o metodo "toUpperCase()" transformara todas as letras do input para maiusculo (O que se é consenso quando se trata de um numero Hexadecimal)
+        let valorInp = inp_numero.value.toUpperCase();
+
+        // essa variavel recebera o valor decimal do metodo "parseInt(X,Y)" sendo que, X é o valor a ser convertido e Y a base desse numero. obs: Caso X seja um numero invalido para a base indicada, "decimalNum" recebe "NaN", mas apenas se o numero mais a esquerda da input ser o numero invalido.
+        let decimalNum = parseInt(valorInp, base)
+
+        console.log(decimalNum)
+        // SE "decimalNum" tenha recebido "NaN" o codigo dispara um alert e nenhuma conta é feita, SE NÃO, as conversões são feitas normalmente.
+        if (isNaN(decimalNum)) {
+            alert("Coloque um valor válido para a base indicada")
+        } else {
+            let binarioNum = decimalNum.toString(2);
+            let octalNum = decimalNum.toString(8);
+
+            // Novamente é utiliado o "toUpperCase()" para padronizar o hexadecimal.
+            let hexadecimalNum = decimalNum.toString(16).toUpperCase();
+
+            // O metodo "toString" tem uma falha, que é, quando ele identifica um numero que não proprio para a base, ele converte todos os numeros a esquerda no numero invalido, ou seja, caso o numero for "1001201" na base binaria, o "parseInt" ira converter apenas "1001" dando como resultado para o "decimalNum" o valor "9" e, quando "binarioNum" recebe o valor binario de "decimalNum" pelo metodo "toString()" ele recebera o valor "1001". 
+            // Se aproveitando disso, o if e else if's a seguir verificam se o valor da conversão é igual ao valor do input na base indicada pelo usuario. Ou seja, no nosso exemplo, ele veria que a base é igual a 2, e que "binarioNum" é diferente de "valorInp" ("1001" != "1001201"), disparando um alert de erro. Fazendo o mesmo processo em qualquer base selecionada.
+            if (base == 2 && binarioNum != valorInp) {
+                alert("Coloque um valor válido para a base indicada")
+            } else if (base == 8 && octalNum != valorInp) {
+                alert("Coloque um valor válido para a base indicada")
+            } else if (base == 10 && decimalNum != valorInp) {
+                alert("Coloque um valor válido para a base indicada")
+            } else if (base == 16 && hexadecimalNum != valorInp) {
+                alert("Coloque um valor válido para a base indicada")
+            } 
+            
+            // Caso todos os valores coincidirem, eles são inseridos nas div's.
+            else {
+                div_octal.innerHTML = `<p>${octalNum}</p>`
+                div_hexadecimal.innerHTML = `<p>${hexadecimalNum}</p>`
+                div_binario.innerHTML = `<p>${binarioNum}</p>`
+                div_decimal.innerHTML = `<p>${decimalNum}</p>`
+            }
+        }
+
+
+    }
+
+    function inp_octal() {
+        if (visibilitVarOctal == 0) {
+            div_octal.style.display = "block"
+            visibilitVarOctal += 1
+        } else {
+            div_octal.style.display = "none"
+            visibilitVarOctal -= 1
+        }
+    }
+
+    function inp_hexadecimal() {
+        if (visibilitVarHexadecimal == 0) {
+            div_hexadecimal.style.display = "block"
+            visibilitVarHexadecimal += 1
+        } else {
+            div_hexadecimal.style.display = "none"
+            visibilitVarHexadecimal -= 1
+        }
+
+    }
+
+    function inp_binario() {
+        if (visibilitVarBinario == 0) {
+            div_binario.style.display = "block"
+            visibilitVarBinario += 1
+        } else {
+            div_binario.style.display = "none"
+            visibilitVarBinario -= 1
+        }
+
+    }
+
+    function inp_decimal() {
+        if (visibilitVarDecimal == 0) {
+            div_decimal.style.display = "block"
+            visibilitVarDecimal += 1
+        } else {
+            div_decimal.style.display = "none"
+            visibilitVarDecimal -= 1
+        }
+
+    }
+
+
+</script>

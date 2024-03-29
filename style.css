@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-weight: 800;
+
+}
+
+body, html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+input, select, select option{
+    color: black;
+    text-align: center;
+
+}
+
+#inp_numero{
+    font-weight: 500;
+    font-size: 20px;
+    color: #000000;
+    background-color: #fff7f3;
+    border-radius: 0.4vw;
+    border: none;
+    padding: 0.4vw;
+    min-width: 120px;
+    height: 30px;
+}
+
+.mainFrame{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-card{
+    /* Deixei o card um pouco tranparente aqui pelo rgba*/
+    background-color: rgba(0, 0, 0, 0.856);
+    min-height: 90%;
+    border-radius:50px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid white;
+}
+
+.checkboxInput input{
+    margin-top: 15px ;
+}
+
+.text-conversor{
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.text-input{
+    font-size: 17px;
+}
+
+.answer-box{
+    background-color: rgb(200, 200, 200);
+    height: 70px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+    border-radius: 10px;
+}
+
+.answer-box p{
+    color: black;
+    position: relative;
+    top:25px;
+}
+
+.button_converter{
+    background-color: white;
+    color: black;
+    width: 150px;
+    height: 40px;
+    border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#codevideo {
+    position: fixed;
+    display: flex;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: grayscale();
+  }
+  
